@@ -5,6 +5,7 @@ import {
   addBlog,
   getAllPost,
   getPost,
+  totalPages,
   updateBlog,
 } from "../controllers/controller.blog";
 
@@ -20,6 +21,7 @@ blogRouter.use("/*", authentication);
 blogRouter.post("/", addBlog);
 blogRouter.put("/", updateBlog);
 blogRouter.get("/bulk", getAllPost);
+blogRouter.get("/totalPages", totalPages);
 blogRouter.get("/:id", getPost);
 
 export { blogRouter };

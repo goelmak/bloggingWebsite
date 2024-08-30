@@ -1,5 +1,10 @@
 import { Hono } from "hono";
-import { signInRoute, signUpRoute } from "../controllers/controller.user";
+import {
+  authenticateRoute,
+  signInRoute,
+  signUpRoute,
+} from "../controllers/controller.user";
+import { authentication } from "../middleware/middleware.blog";
 
 export const userRouter = new Hono<{
   Bindings: {
@@ -11,3 +16,7 @@ export const userRouter = new Hono<{
 userRouter.post("/signup", signUpRoute);
 
 userRouter.post("/signin", signInRoute);
+
+userRouter.use("/", authentication);
+
+userRouter.get("/", authenticateRoute);
